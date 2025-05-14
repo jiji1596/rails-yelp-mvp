@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="cards">
+    <% @restaurants.each do |restaurant| %>
+      <div class="card-trip">
+        <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+        <div class="card-trip-infos">
+          <div>
+            <h2><%= restaurant.name %></h2>
+            <p><%= restaurant.category %></p>
+          </div>
+          <% sum = restaurant.reviews.map { |x| x.rating }.sum  %>
+          <% average = ( sum / restaurant.reviews.length.to_f).round(1) if restaurant.reviews.length > 0 %>
+          <h3 class="card-trip-pricing"><i class="fa-regular fa-star"></i>:<%= average ? average : 0 %></h3>
+        </div>
+        <%= link_to "", restaurant_path(restaurant), class: "link-cover"  %>
+      </div>
+    <% end %>
+  </div>
+</div>
